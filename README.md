@@ -12,7 +12,7 @@ To run this demo locally, you must have Node.js installed on you machine.
 ### Run online
 To run online on Gitpod:
 - Open [https://gitpod.io/#https://github.com/ulyssespotiguara/disse](https://gitpod.io/#https://github.com/ulyssespotiguara/disse)
-- Login on Github and give necessary permissions
+- Login with your Github account and give the necessary permissions
 - When terminal shows in, type in
 `node disse.js example1`
 
