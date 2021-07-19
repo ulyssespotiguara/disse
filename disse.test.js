@@ -1,5 +1,14 @@
-const disse = require('./disse.js');
+const disse = require ('./disse.js')
 
-test('Testing example1 file. Should output two lines: [cat sees me] and [mary likes trees]', () => {
-  expect("disse example 1").toBe('[cat sees me] and [mary likes trees]');
+test('Testing example1 file. Should output:\n[cat sees me]\n[mary likes trees]', done => {
+  function callback(data) {
+    try {
+      expect(data).toBe('[cat sees me]\n[mary likes trees]');
+      done();
+    } catch(error) {
+      done(error);
+    }
+  }
+
+  disse.returnSearch('example1', callback);
 });

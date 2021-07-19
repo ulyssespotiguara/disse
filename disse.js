@@ -1,22 +1,24 @@
 const fileHandler   = require('./lib/fileHandler.js');
 const sanitization  = require('./lib/sanitization.js');
-const lib           = require('./lib/common.js');
+const common        = require('./lib/common.js');
 
-let filepath = getArgument(0, process.argv);
+let filepath = common.getArgument(0, process.argv);
 
-fileHandler.fileOpen(filepath, (fileContent) => {
-  let content   = fileContent;
-  let inputList = lib.transforToList(content);
-  let searchStr = lib.getSearchString(inputList);
-  let matches   = lib.getMatches(inputList, searchStr);
-  let output    = lib.getOutputFromMatches(matches);
+returnSearch(filepath, e => console.log(e));
 
-      output    = sanitization.sanitize(output);
-      output    = lib.formatOutput(output);
+function returnSearch(filepath, callback) {
+  fileHandler.fileOpen(filepath, (fileContent) => {
+      let content   = fileContent;
+      let inputList = common.transforToList(content);
+      let searchStr = common.getSearchString(inputList);
+      let matches   = common.getMatches(inputList, searchStr);
+      let output    = common.getOutputFromMatches(matches);
 
-  console.log (output);
-});
+          output    = sanitization.sanitize(output);
+          output    = common.formatOutput(output);
 
-function getArgument(index, argList) {
-  return process.argv.slice(2)[index];
+      callback(output);
+    });
 }
+
+module.exports = {returnSearch}
